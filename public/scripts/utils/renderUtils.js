@@ -1,3 +1,5 @@
+import { formatCurrency } from "./money.js";
+
 export function renderProducts(products, containerSelector) {
   const productsGrid = document.querySelector(containerSelector);
   if (!productsGrid) return;
