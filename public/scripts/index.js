@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
   fetchAndDisplayProducts(currentPage);
   observeProductsGrid();
   updateCartQuantity();
+  renderCategories(categories);
 });
 
 // Load products and display them, updating pagination
@@ -234,3 +235,54 @@ searchBar.addEventListener("input", () => {
     suggestionsDropdown.style.display = "none";
   }
 });
+
+// Categories data
+const categories = [
+  {
+    slug: "jackets",
+    name: "Jackets",
+    image: "/images/categories/jackets.jpeg",
+  },
+  {
+    slug: "shoes",
+    name: "Shoes",
+    image: "/images/categories/shoes.jpeg",
+  },
+  {
+    slug: "bags",
+    name: "Bags",
+    image: "/images/categories/bags.jpeg",
+  },
+  {
+    slug: "accessories",
+    name: "Accessories",
+    image: "/images/categories/accessories.jpeg",
+  },
+];
+
+// Function to generate the Categories Section
+function renderCategories(categories) {
+  const categoriesSection = document.querySelector(".categories-section");
+
+  if (!categoriesSection) return;
+
+  categoriesSection.innerHTML = `
+    <h2>Explore Our Categories</h2>
+    <div class="categories-grid">
+      ${categories
+        .map(
+          (category) => `
+          <div class="category-item">
+            <a href="category.html?category=${category.slug}" class="category-link">
+              <div class="category-image">
+                <img src="${category.image}" alt="${category.name}" />
+              </div>
+              <h3>${category.name}</h3>
+            </a>
+          </div>
+        `
+        )
+        .join("")}
+    </div>
+  `;
+}

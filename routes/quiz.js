@@ -25,152 +25,88 @@ async function checkDailySubmissionLimit(email) {
 
 // Generates personalized recommendations based on quiz answers
 function generateRecommendation(quizAnswers) {
-  const { q1: room, q2: style, q3: budget } = quizAnswers;
+  const { q1: productType, q2: material, q3: budget } = quizAnswers;
 
-  // Define recommendations based on room and style
+  // Define recommendations based on product type, material, and budget
   const recommendations = {
-    living: {
-      modern: {
-        budget:
-          "Consider our modern living room essentials under $500, perfect for a stylish yet affordable setup.",
-        "mid-range":
-          "A sleek sofa set with matching coffee tables would be ideal for a contemporary look in your living room.",
-        "high-end":
-          "Our premium sectional sofas and minimalist coffee tables in leather and steel make a bold statement.",
+    jackets: {
+      "genuine leather": {
+        "below 3000 ksh":
+          "Check out our affordable faux leather jackets, perfect for budget-conscious style enthusiasts.",
+        "3000 - 10000 ksh":
+          "Our genuine leather jackets in classic and modern designs are a great choice.",
+        "above 10000 ksh":
+          "Discover our premium handcrafted leather jackets, combining style and durability.",
       },
-      classic: {
-        budget:
-          "Explore classic living room chairs and sofas under $500 that offer elegance and comfort.",
-        "mid-range":
-          "Consider our curated collection of classic wooden coffee tables and plush armchairs.",
-        "high-end":
-          "Our luxury handcrafted sofas and vintage armoires create a timeless classic atmosphere in your living room.",
-      },
-      rustic: {
-        budget:
-          "Our rustic coffee tables and wooden chairs under $500 are perfect for a cozy, farmhouse-style living room.",
-        "mid-range":
-          "Opt for solid wood furniture and earthy tones to add warmth to your rustic-themed living room.",
-        "high-end":
-          "Our reclaimed wood and artisan-crafted sofas bring a high-end rustic feel to your living room.",
-      },
-      minimalist: {
-        budget:
-          "Check out our minimalist coffee tables and compact seating options under $500 for small living spaces.",
-        "mid-range":
-          "Our modular sofas and sleek side tables offer functionality without compromising on style.",
-        "high-end":
-          "Discover minimalist, high-end furniture with clean lines, featuring materials like glass, steel, and wood.",
+      denim: {
+        "below 3000 ksh":
+          "Explore our budget-friendly denim jackets, ideal for casual wear.",
+        "3000 - 10000 ksh":
+          "Our stylish and durable denim jackets fit both your budget and fashion needs.",
+        "above 10000 ksh":
+          "Try our designer denim jackets with premium finishes for a luxury feel.",
       },
     },
-    bedroom: {
-      modern: {
-        budget:
-          "Try our modern bed frames and simple nightstands for a stylish yet affordable bedroom look.",
-        "mid-range":
-          "Our bed frames and dresser sets bring modern elegance and storage to your bedroom.",
-        "high-end":
-          "Our high-end bedroom sets include memory foam mattresses and LED bed frames for a luxurious experience.",
+    shoes: {
+      "genuine leather": {
+        "below 3000 ksh":
+          "Our faux leather shoes offer a sleek look at an affordable price.",
+        "3000 - 10000 ksh":
+          "Choose from our range of genuine leather shoes that balance comfort and quality.",
+        "above 10000 ksh":
+          "Experience luxury with our handmade premium leather shoes.",
       },
-      classic: {
-        budget:
-          "Consider our traditional wooden bed frames and elegant nightstands for a classic look.",
-        "mid-range":
-          "Explore bedroom sets with ornate detailing and high-quality wood for a timeless appeal.",
-        "high-end":
-          "Our premium mahogany bedroom furniture provides an opulent, classic aesthetic.",
-      },
-      rustic: {
-        budget:
-          "Our rustic bed frames and wooden nightstands bring charm to any bedroom at an affordable price.",
-        "mid-range":
-          "Consider furniture with reclaimed wood for an eco-friendly, rustic bedroom feel.",
-        "high-end":
-          "Our rustic luxury pieces, crafted from reclaimed wood and metal, are perfect for a high-end farmhouse look.",
-      },
-      minimalist: {
-        budget:
-          "Opt for our minimalist bed frames and compact storage solutions for a simple bedroom setup.",
-        "mid-range":
-          "Our sleek platform beds and Scandinavian-inspired dressers are ideal for a modern minimalist look.",
-        "high-end":
-          "Our premium minimalist collection features space-saving, high-quality materials for a luxurious look.",
+      synthetic: {
+        "below 3000 ksh":
+          "Our synthetic shoes are lightweight, affordable, and stylish.",
+        "3000 - 10000 ksh":
+          "Try our high-quality synthetic leather shoes, perfect for casual or formal occasions.",
+        "above 10000 ksh":
+          "Explore premium synthetic materials with modern designs in our high-end collection.",
       },
     },
-    dining: {
-      modern: {
-        budget:
-          "Our modern dining chairs and compact tables are perfect for a small budget and stylish dining area.",
-        "mid-range":
-          "Choose from mid-range, contemporary dining sets that offer style and comfort.",
-        "high-end":
-          "Our high-end glass-top dining tables and leather chairs create a sophisticated dining experience.",
+    bags: {
+      "genuine leather": {
+        "below 3000 ksh":
+          "Discover compact and stylish leather-inspired bags for an affordable price.",
+        "3000 - 10000 ksh":
+          "Our genuine leather handbags and sling bags offer durability and elegance.",
+        "above 10000 ksh":
+          "Indulge in our premium handcrafted leather bags, perfect for a luxurious statement.",
       },
-      classic: {
-        budget:
-          "Try our classic wood dining chairs for an elegant touch on a budget.",
-        "mid-range":
-          "Our oak dining tables and upholstered chairs bring traditional elegance to your dining space.",
-        "high-end":
-          "Our luxury dining sets crafted from high-quality wood bring timeless sophistication.",
-      },
-      rustic: {
-        budget:
-          "Our rustic dining tables and benches bring warmth to any dining room without breaking the bank.",
-        "mid-range":
-          "Solid wood tables with earthy textures make a perfect rustic dining room setting.",
-        "high-end":
-          "Our handcrafted wood and metal dining sets are ideal for an upscale rustic ambiance.",
-      },
-      minimalist: {
-        budget:
-          "Opt for simple, space-efficient dining sets with clean lines for a minimalist dining area.",
-        "mid-range":
-          "Our Scandinavian-style dining sets offer simplicity and elegance in the mid-range price bracket.",
-        "high-end":
-          "Our minimalist, high-end dining tables and chairs offer premium materials and aesthetic design.",
+      cotton: {
+        "below 3000 ksh":
+          "Our budget-friendly cotton totes and backpacks are practical and eco-friendly.",
+        "3000 - 10000 ksh":
+          "Choose from our durable cotton blend bags, great for everyday use.",
+        "above 10000 ksh":
+          "Try our premium cotton-crafted designer bags for both style and sustainability.",
       },
     },
-    office: {
-      modern: {
-        budget:
-          "Check out our modern office desks and ergonomic chairs, affordable yet stylish.",
-        "mid-range":
-          "Mid-range desks with built-in cable management and modern aesthetics for productivity.",
-        "high-end":
-          "Explore our high-end standing desks and executive chairs for a modern, luxurious office feel.",
+    accessories: {
+      "genuine leather": {
+        "below 3000 ksh":
+          "Check out our stylish and affordable leather wallets and belts.",
+        "3000 - 10000 ksh":
+          "Our high-quality leather gloves, belts, and wallets are practical and elegant.",
+        "above 10000 ksh":
+          "Discover our exclusive range of luxury leather accessories for the discerning buyer.",
       },
-      classic: {
-        budget:
-          "Consider traditional wood office desks and comfortable chairs for a professional look on a budget.",
-        "mid-range":
-          "Classic, sturdy wooden desks and leather chairs bring elegance to a home office.",
-        "high-end":
-          "Our premium oak desks and leather executive chairs are perfect for a classic office setting.",
-      },
-      rustic: {
-        budget:
-          "Our affordable rustic desks and shelves are perfect for a cozy, farmhouse-style office.",
-        "mid-range":
-          "Reclaimed wood desks and industrial chairs create a rustic yet functional workspace.",
-        "high-end":
-          "Our luxury rustic office pieces combine reclaimed wood and metal for a high-end farmhouse office look.",
-      },
-      minimalist: {
-        budget:
-          "Opt for our compact office desks and simple chairs for a minimalist office setup.",
-        "mid-range":
-          "Explore sleek and functional mid-range desks ideal for a minimalist workspace.",
-        "high-end":
-          "Our high-end minimalist office furniture combines clean lines and premium materials for an upscale look.",
+      synthetic: {
+        "below 3000 ksh":
+          "Explore our budget-friendly synthetic belts and wallets.",
+        "3000 - 10000 ksh":
+          "Try our durable synthetic accessories, perfect for a polished look.",
+        "above 10000 ksh":
+          "Opt for premium synthetic accessories that combine style and functionality.",
       },
     },
   };
 
-  // Return a recommendation based on room, style, and budget
+  // Return a recommendation based on product type, material, and budget
   return (
-    recommendations[room]?.[style]?.[budget] ||
-    "Explore our curated furniture collection for your ideal style."
+    recommendations[productType]?.[material]?.[budget] ||
+    "Explore our curated clothing and leather collection for your style."
   );
 }
 
@@ -211,7 +147,7 @@ router.post("/", async (req, res) => {
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
       to: email,
-      subject: "Your Personalized Furniture Recommendation",
+      subject: "Your Personalized Clothing & Leather Recommendation",
       text: `Thank you for taking our quiz! Here is your recommendation: ${recommendation}`,
     });
 
