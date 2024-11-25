@@ -1,5 +1,4 @@
-import { renderProducts } from "./index.js";
-
+import { renderProducts } from "./utils/renderUtils.js";
 document.addEventListener("DOMContentLoaded", () => {
   const searchButton = document.querySelector(".js-search-button");
   const searchBar = document.querySelector(".js-search-bar");

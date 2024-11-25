@@ -13,6 +13,8 @@ import { faqs } from "./data/faqsData.js";
 import { categories } from "./data/categoriesData.js";
 import { testimonials } from "./data/testimonialsData.js";
 import { specialOffers } from "./data/specialOffersData.js";
+import "./handleSearch.js";
+import "./sidebar.js";
 
 let currentPage = 1;
 let totalPages = 1;
