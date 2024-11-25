@@ -18,6 +18,9 @@ document.addEventListener("DOMContentLoaded", () => {
   observeProductsGrid();
   updateCartQuantity();
   renderCategories(categories);
+  renderFAQs(faqs);
+  renderTestimonials(testimonials);
+  renderSpecialOffers(specialOffers);
 });
 
 // Load products and display them, updating pagination
@@ -279,6 +282,141 @@ function renderCategories(categories) {
               </div>
               <h3>${category.name}</h3>
             </a>
+          </div>
+        `
+        )
+        .join("")}
+    </div>
+  `;
+}
+
+// FAQs Data
+const faqs = [
+  {
+    question: "What are your delivery options?",
+    answer:
+      "We offer various delivery options, including standard and express shipping. Orders over KSH 15,000 qualify for free delivery in Nairobi.",
+  },
+  {
+    question: "How do I return a product?",
+    answer:
+      "You can return a product within 30 days of delivery. Please ensure the item is in its original condition and packaging.",
+  },
+  {
+    question: "Do you offer customization services?",
+    answer:
+      "Yes, we provide customization options for certain products. Contact our support team for more details.",
+  },
+];
+
+// Testimonials Data
+const testimonials = [
+  {
+    text: "The leather jacket I bought was worth every penny. Great quality and amazing design!",
+    name: "Amina K.",
+  },
+  {
+    text: "Prompt delivery and excellent customer service. Highly recommended.",
+    name: "Joseph M.",
+  },
+  {
+    text: "Best place to buy leather accessories in Nairobi. Loved the custom options.",
+    name: "Grace W.",
+  },
+];
+
+// Special Offers Data
+const specialOffers = [
+  {
+    image: "/images/products/leather-shoes-deal.jpeg",
+    text: "20% Off Premium Leather Shoes - Limited Time!",
+  },
+  {
+    image: "/images/products/jackets-sale.jpeg",
+    text: "Up to 30% Off on Winter Jackets",
+  },
+  {
+    image: "/images/products/free-delivery.jpeg",
+    text: "Free Delivery on Orders Over KSH 10,000",
+  },
+];
+
+// Function to render FAQs
+function renderFAQs(faqs) {
+  const faqSection = document.querySelector(".faq-section");
+  if (!faqSection) return;
+
+  faqSection.innerHTML = `
+    <h2>Frequently Asked Questions</h2>
+    ${faqs
+      .map(
+        (faq) => `
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <i class="fas fa-chevron-right"></i>
+            <span class="question-text">${faq.question}</span>
+          </button>
+          <div class="faq-answer">
+            <p>${faq.answer}</p>
+          </div>
+        </div>
+      `
+      )
+      .join("")}
+  `;
+
+  // Add toggle functionality for each FAQ
+  document.querySelectorAll(".faq-question").forEach((button) => {
+    button.addEventListener("click", () => {
+      const expanded = button.getAttribute("aria-expanded") === "true";
+      button.setAttribute("aria-expanded", !expanded);
+
+      const answer = button.nextElementSibling;
+      if (!expanded) {
+        answer.style.maxHeight = answer.scrollHeight + "px";
+      } else {
+        answer.style.maxHeight = 0;
+      }
+    });
+  });
+}
+
+// Function to render Testimonials
+function renderTestimonials(testimonials) {
+  const testimonialsSection = document.querySelector(".testimonials-section");
+  if (!testimonialsSection) return;
+
+  testimonialsSection.innerHTML = `
+    <h2>What Our Customers Say</h2>
+    <div class="testimonials-grid">
+      ${testimonials
+        .map(
+          (testimonial) => `
+          <div class="testimonial-item">
+            <p>"${testimonial.text}"</p>
+            <span>- ${testimonial.name}</span>
+          </div>
+        `
+        )
+        .join("")}
+    </div>
+  `;
+}
+
+// Function to render Special Offers
+function renderSpecialOffers(offers) {
+  const offersSection = document.querySelector(".special-offers-section");
+  if (!offersSection) return;
+
+  offersSection.innerHTML = `
+    <h2>Exclusive Deals</h2>
+    <div class="offers-grid">
+      ${offers
+        .map(
+          (offer) => `
+          <div class="offer-item">
+            <img src="${offer.image}" alt="${offer.text}" />
+            <p>${offer.text}</p>
           </div>
         `
         )
