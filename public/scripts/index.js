@@ -10,6 +10,11 @@ import "./newsletter.js";
 import "./pagination.js";
 import "./handleSearch.js";
 
+import { faqs } from "./data/faqsData.js";
+import { categories } from "./data/categoriesData.js";
+import { testimonials } from "./data/testimonialsData.js";
+import { specialOffers } from "./data/specialOffersData.js";
+
 let currentPage = 1;
 let totalPages = 1;
 
@@ -239,30 +244,6 @@ searchBar.addEventListener("input", () => {
   }
 });
 
-// Categories data
-const categories = [
-  {
-    slug: "jackets",
-    name: "Jackets",
-    image: "/images/categories/jackets.jpeg",
-  },
-  {
-    slug: "shoes",
-    name: "Shoes",
-    image: "/images/categories/shoes.jpeg",
-  },
-  {
-    slug: "bags",
-    name: "Bags",
-    image: "/images/categories/bags.jpeg",
-  },
-  {
-    slug: "accessories",
-    name: "Accessories",
-    image: "/images/categories/accessories.jpeg",
-  },
-];
-
 // Function to generate the Categories Section
 function renderCategories(categories) {
   const categoriesSection = document.querySelector(".categories-section");
@@ -289,57 +270,6 @@ function renderCategories(categories) {
     </div>
   `;
 }
-
-// FAQs Data
-const faqs = [
-  {
-    question: "What are your delivery options?",
-    answer:
-      "We offer various delivery options, including standard and express shipping. Orders over KSH 15,000 qualify for free delivery in Nairobi.",
-  },
-  {
-    question: "How do I return a product?",
-    answer:
-      "You can return a product within 30 days of delivery. Please ensure the item is in its original condition and packaging.",
-  },
-  {
-    question: "Do you offer customization services?",
-    answer:
-      "Yes, we provide customization options for certain products. Contact our support team for more details.",
-  },
-];
-
-// Testimonials Data
-const testimonials = [
-  {
-    text: "The leather jacket I bought was worth every penny. Great quality and amazing design!",
-    name: "Amina K.",
-  },
-  {
-    text: "Prompt delivery and excellent customer service. Highly recommended.",
-    name: "Joseph M.",
-  },
-  {
-    text: "Best place to buy leather accessories in Nairobi. Loved the custom options.",
-    name: "Grace W.",
-  },
-];
-
-// Special Offers Data
-const specialOffers = [
-  {
-    image: "/images/products/leather-shoes-deal.jpeg",
-    text: "20% Off Premium Leather Shoes - Limited Time!",
-  },
-  {
-    image: "/images/products/jackets-sale.jpeg",
-    text: "Up to 30% Off on Winter Jackets",
-  },
-  {
-    image: "/images/products/free-delivery.jpeg",
-    text: "Free Delivery on Orders Over KSH 10,000",
-  },
-];
 
 // Function to render FAQs
 function renderFAQs(faqs) {

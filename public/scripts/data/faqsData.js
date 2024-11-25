@@ -15,5 +15,3 @@ export const faqs = [
       "Yes, we provide customization options for certain products. Contact our support team for more details.",
   },
 ];
-
-console.log(faqs);
