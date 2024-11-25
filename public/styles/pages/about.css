@@ -1,0 +1,161 @@
+/* General Styles */
+body {
+  font-family: "Roboto", sans-serif;
+  color: #333;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.page-header {
+  background-color: #1a1a1a;
+  color: #fff;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.page-header h1 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+}
+
+.page-header p {
+  font-size: 1.2em;
+}
+
+/* Mission Section */
+.mission-section {
+  background-color: #f0f8ff;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.mission-section h2 {
+  color: #007bff;
+}
+
+/* Story Section */
+.story-section {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.story-section h2 {
+  color: #e67e22;
+}
+
+/* Values Section */
+.values-section {
+  background-color: #f9f9f9;
+  padding: 40px 20px;
+}
+
+.values-section h2 {
+  text-align: center;
+  color: #ff9900;
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  text-align: center;
+}
+
+.value-item i {
+  font-size: 2em;
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+/* Team Section */
+.team-section {
+  background-color: #f3f3f3;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.team-section h2 {
+  color: #ff5733;
+}
+
+.team-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.team-member {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  width: 250px;
+}
+
+.team-member img {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+
+/* Showroom Section */
+.showroom-section {
+  background-color: #fafafa;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.showroom-section h2 {
+  color: #007bff;
+}
+
+.showroom-section ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.showroom-section ul li {
+  margin: 10px 0;
+  font-size: 1.1em;
+}
+
+/* Call to Action Section */
+.cta-section {
+  background-color: #007bff;
+  color: #fff;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.cta-section h2 {
+  font-size: 1.8em;
+}
+
+.btn-primary {
+  background-color: #ff9900;
+  color: #fff;
+  padding: 12px 24px;
+  font-weight: bold;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #e67e00;
+}
+
+/* Footer */
+.footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}

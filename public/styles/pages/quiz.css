@@ -1,0 +1,108 @@
+#quiz {
+  background-image: url("/images/products/sofa-modern.jpeg");
+  background-size: cover;
+  background-position: center;
+  padding: 60px 20px;
+  color: #333;
+  position: relative;
+  text-align: center;
+}
+
+#quiz::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(26, 26, 26, 0.7); /* Darker overlay to match hero */
+  z-index: 1;
+}
+
+#quiz .container {
+  position: relative;
+  z-index: 2;
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 30px;
+  border-radius: 10px;
+  max-width: 800px;
+  margin: auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.quiz-form label {
+  font-weight: bold;
+  color: #333;
+}
+
+.quiz-form select,
+.quiz-form input {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: 1px solid #d5d9d9;
+  font-size: 1rem;
+  background-color: #f7f7f7;
+  color: #333;
+}
+
+.quiz-form button {
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  border-radius: 50px;
+  background-color: #ff9900; /* Matching the button style */
+  color: #212020;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border: 1px solid transparent;
+}
+
+.quiz-form button:hover {
+  background-color: #cc7a00;
+}
+
+#quizResults {
+  display: none;
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  color: #333;
+}
+
+/* Error messages are hidden by default */
+
+.invalid-feedback,
+#submissionError {
+  display: none;
+}
+
+/* Show invalid feedback when the form is invalid */
+.was-validated .form-control:invalid + .invalid-feedback {
+  display: block;
+}
+
+/* Submission error styling */
+#submissionError {
+  display: none;
+  color: #cc0000;
+  font-weight: bold;
+}
+
+/* Enhanced styling for OK button */
+#continueButton {
+  background-color: #ff9900;
+  color: #fff;
+  padding: 10px 20px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border: 1px solid transparent;
+}
+
+#continueButton:hover {
+  background-color: #e67e00;
+}

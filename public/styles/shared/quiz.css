@@ -1,0 +1,96 @@
+/* Center the form container on the page */
+#quiz {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("/images/categories/beds.jpeg"); /* Background image */
+  background-size: cover;
+  background-position: center;
+  padding: 20px;
+  color: #ffffff;
+}
+
+.quiz-container {
+  max-width: 800px;
+  width: 100%;
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.9
+  ); /* Semi-transparent form background */
+  border-radius: 15px;
+  padding: 40px 30px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+}
+
+#quiz h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: var(--primary-color);
+}
+
+#quiz p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+/* Form Layout and Field Styling */
+.quiz-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.quiz-form .form-row {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.quiz-form label {
+  font-weight: bold;
+  color: #333;
+}
+
+.quiz-form select,
+.quiz-form input {
+  width: 100%;
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.quiz-form select:focus,
+.quiz-form input:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+/* Centered Button Styling */
+.btn-submit {
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  border-radius: 30px;
+  background-color: #ff6b6b; /* Matching button color */
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn-submit:hover {
+  background-color: #ff5252;
+  transform: scale(1.05);
+}
+
+/* Extra styles for centering the form on page */
+.text-center {
+  text-align: center;
+}

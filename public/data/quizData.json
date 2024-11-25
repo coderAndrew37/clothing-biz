@@ -1,0 +1,21 @@
+{
+  "quizTitle": "Find Your Ideal Furniture Style",
+  "quizDescription": "Answer a few quick questions to discover the perfect furniture for your home!",
+  "questions": [
+    {
+      "id": "q1",
+      "question": "What room are you looking to furnish?",
+      "options": ["Living Room", "Bedroom", "Dining Room", "Office"]
+    },
+    {
+      "id": "q2",
+      "question": "What's your preferred furniture style?",
+      "options": ["Modern", "Classic", "Rustic", "Minimalist"]
+    },
+    {
+      "id": "q3",
+      "question": "What's your budget range?",
+      "options": ["Below $500", "$500 - $2000", "Above $2000"]
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Category - Kenya Furniture Hub</title>
+    <link rel="stylesheet" href="/styles/shared/general.css" />
+    <link rel="stylesheet" href="/styles/shared/amazon-header.css" />
+    <link rel="stylesheet" href="/styles/pages/amazon.css" />
+  </head>
+  <body>
+    <!-- Header Section -->
+    <div class="amazon-header">
+      <div class="amazon-header-left-section">
+        <a href="/" class="header-link">
+          <img
+            src="images/kenya-furniture-logo.png"
+            alt="Kenya Furniture Hub"
+            class="amazon-logo"
+          />
+        </a>
+      </div>
+      <div class="amazon-header-middle-section">
+        <input
+          class="search-bar"
+          type="text"
+          placeholder="Search for furniture..."
+        />
+        <button class="search-button"><i class="fas fa-search"></i></button>
+      </div>
+      <div class="amazon-header-right-section">
+        <a class="orders-link header-link" href="/orders.html">
+          <span class="returns-text">Returns</span>
+          <span class="orders-text">& Orders</span>
+        </a>
+        <a class="cart-link header-link" href="/checkout.html">
+          <img class="cart-icon" src="images/icons/cart-icon.png" alt="Cart" />
+          <div class="cart-quantity js-cart-quantity"></div>
+          <div class="cart-text">Cart</div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Category Products Section -->
+    <div class="category-products-section">
+      <h2 id="category-title">Category</h2>
+      <div class="products-grid js-products-grid">
+        <!-- Products will be dynamically loaded here -->
+      </div>
+    </div>
+
+    <!-- Pagination -->
+    <div class="products-pagination">
+      <nav aria-label="Page navigation">
+        <ul class="pagination">
+          <li class="page-item disabled" id="previous-page">
+            <a class="page-link" href="#" aria-label="Previous">Previous</a>
+          </li>
+          <li class="page-item" id="next-page">
+            <a class="page-link" href="#" aria-label="Next">Next</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- JavaScript -->
+    <script type="module" src="/scripts/category.js"></script>
+  </body>
+</html>
