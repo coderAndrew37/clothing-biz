@@ -4,20 +4,28 @@ const router = express.Router();
 const mongoose = require("mongoose");
 
 router.get("/", async (req, res) => {
-  const page = parseInt(req.query.page, 10) || 1;
-  const limit = 15; // Set a limit for products per page
+  const page = parseInt(req.query.page, 10) || 1; // Default to page 1
+  const limit = parseInt(req.query.limit, 10) || 15; // Default to 15 items per page
+  const categorySlug = req.query.category; // Get the `category` parameter from the query string
 
   try {
-    // Step 1: Get the total count of products
-    const totalProducts = await Product.countDocuments({});
+    const filter = {}; // Initialize an empty filter
+
+    // If a category is specified, filter by `categorySlug`
+    if (categorySlug) {
+      filter.categorySlug = categorySlug; // Ensure the field in the database is `categorySlug`
+    }
+
+    // Step 1: Count total matching products
+    const totalProducts = await Product.countDocuments(filter);
     const totalPages = Math.ceil(totalProducts / limit);
 
-    // Step 2: Retrieve products for the requested page
-    const products = await Product.find({})
-      .skip((page - 1) * limit)
-      .limit(limit);
+    // Step 2: Retrieve products with pagination
+    const products = await Product.find(filter)
+      .skip((page - 1) * limit) // Skip the previous pages
+      .limit(limit); // Limit to the number of items per page
 
-    // Step 3: Send response with products and pagination data
+    // Step 3: Return the products and pagination info
     res.json({
       products,
       currentPage: page,
