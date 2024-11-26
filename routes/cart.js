@@ -27,13 +27,12 @@ router.get("/get-cart", authMiddleware, async (req, res) => {
 router.post("/add-to-cart", authMiddleware, async (req, res) => {
   const { productId, quantity } = req.body;
 
-  // Validate input
-  if (!productId || !quantity || quantity <= 0) {
-    return res.status(400).json({ message: "Invalid product ID or quantity." });
+  // Validate productId and quantity
+  if (!productId || !mongoose.Types.ObjectId.isValid(productId)) {
+    return res.status(400).json({ message: "Invalid or missing product ID." });
   }
 
   try {
-    // Fetch the authenticated user
     const user = await User.findById(req.user.userId);
     if (!user) {
       return res.status(404).json({ message: "User not found." });
@@ -45,16 +44,12 @@ router.post("/add-to-cart", authMiddleware, async (req, res) => {
     );
 
     if (existingItem) {
-      // Update the quantity if the product already exists
       existingItem.quantity += quantity;
     } else {
-      // Add a new item to the cart
       user.cart.push({ productId, quantity });
     }
 
-    // Save the updated user data
     await user.save();
-
     res.status(200).json({
       message: "Product added/updated in cart successfully.",
       cart: user.cart,

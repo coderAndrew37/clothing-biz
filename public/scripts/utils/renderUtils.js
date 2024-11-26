@@ -1,5 +1,5 @@
 import { formatCurrency } from "./money.js";
-
+import { initAddToCartListeners } from "./cartUtils.js";
 export function renderProducts(products, containerSelector) {
   const productsGrid = document.querySelector(containerSelector);
   if (!productsGrid) return;
@@ -13,6 +13,9 @@ export function renderProducts(products, containerSelector) {
     .map((product) => generateProductHTML(product))
     .join("");
   productsGrid.innerHTML = productsHTML;
+
+  // Initialize Add to Cart listeners after rendering
+  initAddToCartListeners();
 }
 
 export function generateProductHTML(product) {

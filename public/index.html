@@ -117,66 +117,6 @@
         </div>
       </div>
 
-      <!-- Quiz section -->
-      <section id="quiz" class="py-5 text-center">
-        <div class="container">
-          <h2 id="quizTitle"></h2>
-          <p id="quizDescription"></p>
-
-          <!-- Quiz Form -->
-          <form
-            id="quizForm"
-            class="row g-3 quiz-form needs-validation"
-            novalidate
-          >
-            <!-- Dynamic Questions will be inserted here by JavaScript -->
-
-            <!-- Email Capture -->
-            <div class="col-md-6 submit-section">
-              <label for="email" class="form-label"
-                >Enter your email for personalized suggestions:</label
-              >
-              <input
-                type="email"
-                id="email"
-                name="email"
-                class="form-control"
-                placeholder="Your Email"
-                required
-              />
-              <div class="invalid-feedback">
-                Please provide a valid email address.
-              </div>
-            </div>
-
-            <!-- Submission Error Display -->
-            <div class="col-12 submit-section">
-              <div
-                id="submissionError"
-                class="alert alert-danger"
-                style="display: none"
-              ></div>
-            </div>
-
-            <!-- Submit Button -->
-            <div class="col-12 submit-section">
-              <button type="submit" class="btn btn-primary mt-3">
-                See Suggestions
-              </button>
-            </div>
-          </form>
-
-          <!-- Results Placeholder with Continue Button -->
-          <div id="quizResults" class="mt-4" style="display: none">
-            <h3>Your Recommended Furniture Style:</h3>
-            <p id="resultText"></p>
-            <button id="continueButton" class="btn btn-secondary mt-3">
-              OK
-            </button>
-          </div>
-        </div>
-      </section>
-
       <!-- Clothing Categories Section -->
       <div class="categories-section" id="categories"></div>
 
