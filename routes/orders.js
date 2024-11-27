@@ -1,4 +1,5 @@
 const express = require("express");
+const mongoose = require("mongoose");
 const authMiddleware = require("../middleware/auth.js");
 const { Order, validateOrder } = require("../models/order.js");
 const { Product } = require("../models/product.js"); // Use destructuring here
@@ -80,6 +81,42 @@ router.get("/", authMiddleware, async (req, res) => {
   } catch (error) {
     console.error("Error fetching orders:", error);
     res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+router.get("/:orderId", authMiddleware, async (req, res) => {
+  const { orderId } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(orderId)) {
+    return res.status(400).json({ message: "Invalid Order ID" });
+  }
+
+  try {
+    const order = await Order.findById(orderId).populate(
+      "items.productId",
+      "name image priceCents"
+    );
+
+    if (!order) {
+      return res.status(404).json({ message: "Order not found." });
+    }
+
+    // Simulate order status and delivery date if missing
+    const enrichedOrder = {
+      ...order.toObject(),
+      status: order.status || "Preparing", // Default status
+      items: order.items.map((item) => ({
+        ...item.toObject(),
+        deliveryDate:
+          item.deliveryDate ||
+          new Date(order.datePlaced.getTime() + 7 * 24 * 60 * 60 * 1000), // Default to 7 days after placement
+      })),
+    };
+
+    res.status(200).json(enrichedOrder);
+  } catch (error) {
+    console.error("Error fetching order:", error);
+    res.status(500).json({ message: "Internal server error." });
   }
 });
 

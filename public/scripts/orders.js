@@ -68,13 +68,14 @@ function createOrderHTML(order) {
             <span class="buy-again-message">Buy it again</span>
           </button>
         </div>
-        <div class="product-actions">
-          <a href="/tracking.html">
-            <button class="track-package-button button-secondary">
-              Track package
-            </button>
-          </a>
-        </div>
+       <div class="product-actions">
+  <a href="/tracking.html?orderId=${order._id}&productId=${item.productId._id}">
+    <button class="track-package-button button-secondary">
+      Track package
+    </button>
+  </a>
+</div>
+
       `
     )
     .join("");
