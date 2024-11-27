@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Details - Kenya Clothing Hub</title>
+    <link rel="stylesheet" href="/styles/shared/general.css" />
+    <link rel="stylesheet" href="/styles/pages/product-details.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="amazon-header">
+      <a href="/" class="header-link">
+        <img
+          src="/images/kenya-furniture-logo.png"
+          alt="Kenya Clothing Hub"
+          class="amazon-logo"
+        />
+      </a>
+    </header>
+
+    <!-- Product Details Section -->
+    <main class="product-details-page">
+      <div class="product-container">
+        <!-- Product Image -->
+        <div class="product-image-container">
+          <img
+            src=""
+            alt="Product Image"
+            class="product-image js-product-image"
+          />
+        </div>
+
+        <!-- Product Info -->
+        <div class="product-info">
+          <h1 class="product-name js-product-name"></h1>
+          <div class="product-price js-product-price"></div>
+          <p class="product-description js-product-description"></p>
+
+          <!-- Size Selector -->
+          <div class="product-size">
+            <label for="product-size">Size:</label>
+            <select id="product-size" class="js-size-selector"></select>
+          </div>
+
+          <!-- Quantity Selector -->
+          <div class="product-quantity">
+            <label for="product-quantity">Quantity:</label>
+            <input
+              id="product-quantity"
+              type="number"
+              class="js-quantity-selector"
+              min="1"
+              value="1"
+            />
+          </div>
+
+          <!-- Add to Cart Button -->
+          <button class="button-primary js-add-to-cart">Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Added to Cart Message -->
+      <div class="added-to-cart-notification">
+        Product added to cart! Redirecting to checkout...
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>&copy; 2024 Kenya Clothing Hub. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script type="module" src="/scripts/product-details.js"></script>
+  </body>
+</html>

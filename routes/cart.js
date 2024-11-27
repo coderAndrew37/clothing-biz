@@ -1,4 +1,5 @@
 const express = require("express");
+const mongoose = require("mongoose");
 const authMiddleware = require("../middleware/auth.js");
 const router = express.Router();
 const User = require("../models/user.js");
@@ -8,15 +9,17 @@ const DeliveryOption = require("../models/deiveryOption.js");
 router.get("/get-cart", authMiddleware, async (req, res) => {
   try {
     const user = await User.findById(req.user.userId);
+
     if (!user) return res.status(404).json({ message: "User not found." });
 
-    // Retrieve delivery options; return an empty array if none found
-    const deliveryOptions = (await DeliveryOption.find()) || [];
+    // Sample delivery options
+    const deliveryOptions = [
+      { id: "1", deliveryDays: 3, priceCents: 5000 },
+      { id: "2", deliveryDays: 7, priceCents: 2000 },
+      { id: "3", deliveryDays: 10, priceCents: 0 },
+    ];
 
-    res.status(200).json({
-      cart: user.cart,
-      deliveryOptions,
-    });
+    res.status(200).json({ cart: user.cart, deliveryOptions });
   } catch (error) {
     console.error("Error fetching cart:", error);
     res.status(500).json({ message: "Internal server error." });
@@ -27,35 +30,36 @@ router.get("/get-cart", authMiddleware, async (req, res) => {
 router.post("/add-to-cart", authMiddleware, async (req, res) => {
   const { productId, quantity } = req.body;
 
-  // Validate productId and quantity
   if (!productId || !mongoose.Types.ObjectId.isValid(productId)) {
     return res.status(400).json({ message: "Invalid or missing product ID." });
   }
 
   try {
     const user = await User.findById(req.user.userId);
+
     if (!user) {
       return res.status(404).json({ message: "User not found." });
     }
 
-    // Check if the product already exists in the cart
+    // Check for existing product
     const existingItem = user.cart.find(
       (item) => item.productId.toString() === productId
     );
 
     if (existingItem) {
+      // Increment quantity if item exists
       existingItem.quantity += quantity;
     } else {
+      // Add as new item otherwise
       user.cart.push({ productId, quantity });
     }
 
     await user.save();
-    res.status(200).json({
-      message: "Product added/updated in cart successfully.",
-      cart: user.cart,
-    });
+    res
+      .status(200)
+      .json({ message: "Product added to cart.", cart: user.cart });
   } catch (error) {
-    console.error("Error adding/updating product in cart:", error);
+    console.error("Error adding product to cart:", error);
     res.status(500).json({ message: "Internal server error." });
   }
 });
@@ -104,16 +108,19 @@ router.delete(
 
     try {
       const user = await User.findById(req.user.userId);
+
       if (!user) {
         return res.status(404).json({ message: "User not found." });
       }
 
-      // Remove product from cart
+      // Remove product from the cart
       user.cart = user.cart.filter(
         (item) => item.productId.toString() !== productId
       );
 
-      await user.save();
+      // Save without version conflict
+      await user.save({ validateBeforeSave: false });
+
       res
         .status(200)
         .json({ message: "Product removed from cart.", cart: user.cart });

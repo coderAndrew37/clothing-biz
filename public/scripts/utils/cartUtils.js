@@ -1,5 +1,4 @@
 import { addToCart, updateCartQuantity } from "../../data/cart.js";
-import { isAuthenticated } from "./auth.js";
 
 // Check if the user is authenticated
 export async function isAuthenticated() {
