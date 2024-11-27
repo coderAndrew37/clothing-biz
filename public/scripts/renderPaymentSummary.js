@@ -1,4 +1,3 @@
-// /scripts/renderPaymentSummary.js
 import { formatCurrency } from "./utils/money.js";
 
 const TAX_RATE = 0.1;

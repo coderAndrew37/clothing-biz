@@ -54,33 +54,55 @@ function createOrderHTML(order) {
   const orderItemsHTML = order.items
     .map(
       (item) => `
-      <div class="product-image-container">
-        <img src="${item.productId.image}" />
-      </div>
-      <div class="product-details">
-        <div class="product-name">${item.productId.name}</div>
-        <div class="product-quantity">Quantity: ${item.quantity}</div>
-        <div class="product-price">$${(item.priceCents / 100).toFixed(2)}</div>
-        <button class="buy-again-button button-primary" data-product-id="${
-          item.productId._id
-        }">
-          Buy it again
-        </button>
-      </div>
-    `
+        <div class="product-image-container">
+          <img src="${item.productId.image}" alt="${item.productId.name}">
+        </div>
+        <div class="product-details">
+          <div class="product-name">${item.productId.name}</div>
+          <div class="product-delivery-date">Arriving on: ${new Date(
+            item.deliveryDate
+          ).toLocaleDateString()}</div>
+          <div class="product-quantity">Quantity: ${item.quantity}</div>
+          <button class="buy-again-button button-primary">
+            <img class="buy-again-icon" src="images/icons/buy-again.png">
+            <span class="buy-again-message">Buy it again</span>
+          </button>
+        </div>
+        <div class="product-actions">
+          <a href="/tracking.html">
+            <button class="track-package-button button-secondary">
+              Track package
+            </button>
+          </a>
+        </div>
+      `
     )
     .join("");
 
   return `
     <div class="order-container">
       <div class="order-header">
-        <div>Order Placed: ${new Date(
-          order.datePlaced
-        ).toLocaleDateString()}</div>
-        <div>Order Total: $${(order.totalCents / 100).toFixed(2)}</div>
-        <div>Order ID: ${order._id}</div>
+        <div class="order-header-left-section">
+          <div class="order-date">
+            <div class="order-header-label">Order Placed:</div>
+            <div>${new Date(order.datePlaced).toLocaleDateString()}</div>
+          </div>
+          <div class="order-total">
+            <div class="order-header-label">Total:</div>
+            <div>KSH ${(order.totalCents / 100).toLocaleString("en-KE", {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            })}</div>
+          </div>
+        </div>
+        <div class="order-header-right-section">
+          <div class="order-header-label">Order ID:</div>
+          <div>${order._id}</div>
+        </div>
       </div>
-      <div class="order-details-grid">${orderItemsHTML}</div>
+      <div class="order-details-grid">
+        ${orderItemsHTML}
+      </div>
     </div>
   `;
 }
