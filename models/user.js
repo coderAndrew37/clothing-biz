@@ -35,6 +35,10 @@ const userSchema = new mongoose.Schema({
     minlength: 8,
     maxlength: 1024, // Password will be stored as a hash
   },
+  isAdmin: {
+    type: Boolean,
+    default: false, // Regular users by default
+  },
 
   resetPasswordToken: String,
   resetPasswordExpires: Date,

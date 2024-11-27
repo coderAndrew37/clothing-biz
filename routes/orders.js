@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const authMiddleware = require("../middleware/auth.js");
+const adminMiddleware = require("../middleware/isAdmin.js");
 const { Order, validateOrder } = require("../models/order.js");
 const { Product } = require("../models/product.js"); // Use destructuring here
 const sendOrderConfirmationEmail = require("../services/emailService.js");
@@ -119,5 +120,46 @@ router.get("/:orderId", authMiddleware, async (req, res) => {
     res.status(500).json({ message: "Internal server error." });
   }
 });
+
+router.get("/admin", authMiddleware, adminMiddleware, async (req, res) => {
+  try {
+    const orders = await Order.find()
+      .populate("items.productId", "name image priceCents")
+      .sort({ datePlaced: -1 });
+
+    res.status(200).json(orders);
+  } catch (error) {
+    console.error("Error fetching orders for admin:", error);
+    res.status(500).json({ message: "Internal server error." });
+  }
+});
+
+router.put(
+  "/admin/:orderId",
+  authMiddleware,
+  adminMiddleware,
+  async (req, res) => {
+    const { status } = req.body;
+
+    if (!["Preparing", "Shipped", "Delivered"].includes(status)) {
+      return res.status(400).json({ message: "Invalid status value." });
+    }
+
+    try {
+      const order = await Order.findById(req.params.orderId);
+      if (!order) {
+        return res.status(404).json({ message: "Order not found." });
+      }
+
+      order.status = status;
+      await order.save();
+
+      res.status(200).json({ message: "Order status updated successfully." });
+    } catch (error) {
+      console.error("Error updating order status:", error);
+      res.status(500).json({ message: "Internal server error." });
+    }
+  }
+);
 
 module.exports = router;

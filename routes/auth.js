@@ -2,6 +2,7 @@ const express = require("express");
 const jwt = require("jsonwebtoken");
 const User = require("../models/user.js");
 const authMiddleware = require("../middleware/auth");
+const adminMiddleware = require("../middleware/isAdmin");
 const router = express.Router();
 const rateLimit = require("express-rate-limit");
 
@@ -68,6 +69,7 @@ router.post("/register", async (req, res) => {
 });
 
 // Login Route
+
 router.post("/login", loginLimiter, async (req, res) => {
   const { error } = User.validateLogin(req.body);
   if (error) return res.status(400).json({ message: error.details[0].message });
@@ -98,10 +100,10 @@ router.post("/login", loginLimiter, async (req, res) => {
       maxAge: 45 * 60 * 1000,
     });
 
-    // Send the accessToken in the response JSON for the frontend
+    // Redirect logic for frontend
     res.json({
       message: "Login successful",
-      token: accessToken, // <-- Include the accessToken here
+      isAdmin: user.isAdmin, // Include admin status in the response
       username: user.name,
       email: user.email,
     });
@@ -120,7 +122,6 @@ router.get("/profile", authMiddleware, async (req, res) => {
   }
 });
 
-// Refresh Token Route
 // Refresh Token Route
 router.post("/refresh", (req, res) => {
   const refreshToken = req.cookies.refresh_token;
@@ -150,6 +151,36 @@ router.post("/refresh", (req, res) => {
 router.get("/is-authenticated", authMiddleware, (req, res) => {
   res.status(200).json({ authenticated: true });
 });
+
+// Create Admin Route (Protected)
+router.post(
+  "/create-admin",
+  authMiddleware,
+  adminMiddleware,
+  async (req, res) => {
+    const { name, email, password } = req.body;
+
+    // Validate input
+    const { error } = User.validateRegister({ name, email, password });
+    if (error)
+      return res.status(400).json({ message: error.details[0].message });
+
+    try {
+      const userExists = await User.findOne({ email });
+      if (userExists) {
+        return res.status(400).json({ message: "Email already exists" });
+      }
+
+      const admin = new User({ name, email, password, isAdmin: true });
+      await admin.save();
+
+      res.status(201).json({ message: "Admin created successfully" });
+    } catch (error) {
+      console.error("Error creating admin:", error);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  }
+);
 
 // Logout Route
 router.post("/logout", (req, res) => {

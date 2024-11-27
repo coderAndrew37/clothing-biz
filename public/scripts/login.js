@@ -12,14 +12,19 @@ document.getElementById("login-form").addEventListener("submit", async (e) => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
-      credentials: "include", // Include cookies for token management
+      credentials: "include",
     });
 
     const data = await response.json();
 
     if (response.ok) {
-      // Redirect to homepage on successful login
-      window.location.href = "/";
+      if (data.isAdmin) {
+        // Redirect to admin panel
+        window.location.href = "/admin.html";
+      } else {
+        // Redirect to homepage
+        window.location.href = "/";
+      }
     } else if (response.status === 401) {
       alert("Session expired. Please log in again.");
     } else if (response.status === 429) {

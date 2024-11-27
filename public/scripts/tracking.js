@@ -1,5 +1,3 @@
-// /scripts/tracking.js
-
 /**
  * Fetch tracking details for a specific order and product.
  * @param {string} orderId - The ID of the order.
