@@ -23,7 +23,11 @@ export function initAddToCartListeners() {
   const buttons = document.querySelectorAll(".js-add-to-cart");
 
   buttons.forEach((button) => {
-    button.addEventListener("click", async (event) => {
+    // Remove any existing listeners to avoid duplication
+    const newButton = button.cloneNode(true);
+    button.replaceWith(newButton);
+
+    newButton.addEventListener("click", async (event) => {
       const button = event.currentTarget;
       button.disabled = true;
 

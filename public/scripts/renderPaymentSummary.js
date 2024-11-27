@@ -57,31 +57,33 @@ export function renderPaymentSummary(
     <div class="payment-summary-title">Order Summary</div>
     <div class="payment-summary-row">
         <div>Items (${cart.length}):</div>
-        <div class="payment-summary-money">$${formatCurrency(
+        <div class="payment-summary-money">Ksh ${formatCurrency(
           productTotalCents
         )}</div>
     </div>
     <div class="payment-summary-row">
         <div>Shipping & handling:</div>
-        <div class="payment-summary-money">$${formatCurrency(
+        <div class="payment-summary-money">Ksh ${formatCurrency(
           shippingTotalCents
         )}</div>
     </div>
     <div class="payment-summary-row subtotal-row">
         <div>Total before tax:</div>
-        <div class="payment-summary-money">$${formatCurrency(
+        <div class="payment-summary-money">Ksh ${formatCurrency(
           totalBeforeTaxCents
         )}</div>
     </div>
     <div class="payment-summary-row">
         <div>Estimated tax (${TAX_RATE * 100}%):</div>
-        <div class="payment-summary-money">$${formatCurrency(
+        <div class="payment-summary-money">Ksh ${formatCurrency(
           estimatedTaxCents
         )}</div>
     </div>
     <div class="payment-summary-row total-row">
         <div>Order total:</div>
-        <div class="payment-summary-money">$${formatCurrency(totalCents)}</div>
+        <div class="payment-summary-money">Ksh ${formatCurrency(
+          totalCents
+        )}</div>
     </div>
     <button class="place-order-button button-primary js-place-order-button">
       Place your order

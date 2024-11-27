@@ -49,9 +49,8 @@ async function fetchAndDisplayProducts(page = 1, authenticated = false) {
         fetchAndDisplayProducts(page, authenticated)
       );
 
-      if (authenticated) {
-        initAddToCartListeners();
-      }
+      // Reinitialize listeners to avoid duplication
+      initAddToCartListeners();
     } else {
       document.querySelector(".js-products-grid").innerHTML =
         "<p>No products found.</p>";

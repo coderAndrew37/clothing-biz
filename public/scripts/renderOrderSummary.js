@@ -150,14 +150,16 @@ export async function renderOrderSummary() {
           <div class="cart-item-container js-cart-item-container-${
             matchingProduct._id
           }">
+            <!-- Delivery date positioned at the top-left -->
             <div class="delivery-date js-delivery-date-${matchingProduct._id}">
               Delivery date: ${today.add(7, "days").format("dddd, MMMM D")}
             </div>
+            
             <div class="cart-item-details-grid">
               <img class="product-image" src="${matchingProduct.image}">
               <div class="cart-item-details">
                 <div class="product-name">${matchingProduct.name}</div>
-                <div class="product-price">$${formatCurrency(
+                <div class="product-price">KSH ${formatCurrency(
                   matchingProduct.priceCents
                 )}</div>
                 <div class="product-quantity">
@@ -177,14 +179,14 @@ export async function renderOrderSummary() {
                   }">Delete</span>
                 </div>
               </div>
-            </div>
-            <div class="delivery-options">
-              <div class="delivery-options-title">Choose a delivery option:</div>
-              ${deliveryOptionsHTML(
-                matchingProduct._id,
-                deliveryOptions,
-                cartItem.deliveryOptionId || "1"
-              )}
+              <div class="delivery-options">
+                <div class="delivery-options-title">Choose a delivery option:</div>
+                ${deliveryOptionsHTML(
+                  matchingProduct._id,
+                  deliveryOptions,
+                  cartItem.deliveryOptionId || "1"
+                )}
+              </div>
             </div>
           </div>
         `;
