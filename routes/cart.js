@@ -41,14 +41,13 @@ router.post("/add-to-cart", authMiddleware, async (req, res) => {
       return res.status(404).json({ message: "User not found." });
     }
 
-    // Check for existing product
-    const existingItem = user.cart.find(
+    const existingItemIndex = user.cart.findIndex(
       (item) => item.productId.toString() === productId
     );
 
-    if (existingItem) {
+    if (existingItemIndex >= 0) {
       // Increment quantity if item exists
-      existingItem.quantity += quantity;
+      user.cart[existingItemIndex].quantity += quantity;
     } else {
       // Add as new item otherwise
       user.cart.push({ productId, quantity });
@@ -107,23 +106,20 @@ router.delete(
     const { productId } = req.params;
 
     try {
-      const user = await User.findById(req.user.userId);
+      const updatedUser = await User.findOneAndUpdate(
+        { _id: req.user.userId },
+        { $pull: { cart: { productId } } }, // Remove the product from the cart array
+        { new: true } // Return the updated document
+      );
 
-      if (!user) {
+      if (!updatedUser) {
         return res.status(404).json({ message: "User not found." });
       }
 
-      // Remove product from the cart
-      user.cart = user.cart.filter(
-        (item) => item.productId.toString() !== productId
-      );
-
-      // Save without version conflict
-      await user.save({ validateBeforeSave: false });
-
-      res
-        .status(200)
-        .json({ message: "Product removed from cart.", cart: user.cart });
+      res.status(200).json({
+        message: "Product removed from cart.",
+        cart: updatedUser.cart,
+      });
     } catch (error) {
       console.error("Error removing product from cart:", error);
       res.status(500).json({ message: "Internal server error." });

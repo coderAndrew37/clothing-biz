@@ -10,7 +10,7 @@ let isPaymentSummaryRendered = false; // Flag to prevent double rendering
 function deliveryOptionsHTML(
   productId,
   deliveryOptions = [],
-  selectedDeliveryOptionId = "1"
+  selectedDeliveryOptionId = "2" // Default to the 7-day delivery option
 ) {
   let deliveryHTML = "";
 
@@ -22,7 +22,7 @@ function deliveryOptionsHTML(
       const priceString =
         option.priceCents === 0
           ? "FREE"
-          : `$${formatCurrency(option.priceCents)}`;
+          : `KSH ${formatCurrency(option.priceCents)}`;
       const isChecked = option.id === selectedDeliveryOptionId ? "checked" : "";
       deliveryHTML += `
         <label class="delivery-option">
