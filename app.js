@@ -21,8 +21,8 @@ app.use(
     origin: (origin, callback) => {
       if (
         allowedOrigins === "*" ||
-        allowedOrigins.includes(origin) ||
-        !origin
+        !origin ||
+        allowedOrigins.includes(origin)
       ) {
         callback(null, true);
       } else {
