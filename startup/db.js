@@ -10,7 +10,7 @@ module.exports = function () {
 
   // Set up options for MongoDB connection
   const mongooseOptions = {
-    // ssl: true // Removed for local connection
+    ssl: true, // Removed for local connection
   };
 
   mongoose

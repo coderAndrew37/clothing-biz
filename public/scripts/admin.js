@@ -1,15 +1,22 @@
 async function fetchOrders() {
   try {
+    console.log("Fetching admin orders..."); // Debug log
     const response = await fetch("/api/orders/admin", {
       method: "GET",
-      credentials: "include",
+      credentials: "include", // Ensure cookies are sent
     });
 
-    if (!response.ok) throw new Error("Failed to fetch orders.");
+    console.log("Fetch Response Status:", response.status); // Debug log
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch orders.");
+    }
+
     const orders = await response.json();
+    console.log("Orders fetched:", orders); // Debug log
     renderOrders(orders);
   } catch (error) {
-    console.error("Error fetching orders:", error);
+    console.error("Error fetching orders:", error.message); // Debug log
   }
 }
 

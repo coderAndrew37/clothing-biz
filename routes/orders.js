@@ -121,15 +121,18 @@ router.get("/:orderId", authMiddleware, async (req, res) => {
   }
 });
 
+// Admin route to fetch all orders
 router.get("/admin", authMiddleware, adminMiddleware, async (req, res) => {
+  console.log("Route /admin accessed."); // Debug log for route entry
   try {
     const orders = await Order.find()
       .populate("items.productId", "name image priceCents")
       .sort({ datePlaced: -1 });
 
+    console.log("Orders fetched:", orders); // Debug log for fetched orders
     res.status(200).json(orders);
   } catch (error) {
-    console.error("Error fetching orders for admin:", error);
+    console.error("Error fetching orders for admin:", error.message);
     res.status(500).json({ message: "Internal server error." });
   }
 });

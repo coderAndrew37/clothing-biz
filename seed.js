@@ -4,7 +4,7 @@ const { Product } = require("./models/product");
 // Connect to MongoDB
 const dbUri = "mongodb://localhost:27017/clothing-biz"; // Replace with your database name
 mongoose
-  .connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(dbUri)
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.error("Error connecting to MongoDB:", err));
 
