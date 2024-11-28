@@ -30,13 +30,25 @@
   </head>
   <body>
     <!-- Sidebar Section -->
-    <aside class="sidebar js-sidebar">
-      <nav class="sidebar-nav">
-        <a href="/" class="sidebar-link">Home</a>
-        <a href="/exclusive-deals.html" class="sidebar-link">Exclusive Deals</a>
-        <a href="/about.html" class="sidebar-link">About Us</a>
-        <a href="/contact.html" class="sidebar-link">Contact</a>
-        <a href="/orders.html" class="sidebar-link">Orders</a>
+    <aside
+      class="hidden lg:block fixed top-0 left-0 w-64 h-screen bg-gray-800 text-white"
+    >
+      <nav class="mt-10">
+        <a href="/" class="block px-6 py-3 hover:bg-gray-700">Home</a>
+        <a
+          href="/exclusive-deals.html"
+          class="block px-6 py-3 hover:bg-gray-700"
+          >Exclusive Deals</a
+        >
+        <a href="/about.html" class="block px-6 py-3 hover:bg-gray-700"
+          >About Us</a
+        >
+        <a href="/contact.html" class="block px-6 py-3 hover:bg-gray-700"
+          >Contact</a
+        >
+        <a href="/orders.html" class="block px-6 py-3 hover:bg-gray-700"
+          >Orders</a
+        >
       </nav>
     </aside>
 
@@ -302,6 +314,11 @@
       <i class="fab fa-whatsapp"></i>
       <span class="whatsapp-tooltip">Chat with Me!</span>
     </a>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top js-scroll-to-top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
 
     <!-- Footer Section -->
     <footer class="footer">
