@@ -10,6 +10,8 @@
       rel="stylesheet"
     />
 
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
@@ -31,8 +33,6 @@
     <aside class="sidebar js-sidebar">
       <nav class="sidebar-nav">
         <a href="/" class="sidebar-link">Home</a>
-        <a href="/categories.html" class="sidebar-link">Categories</a>
-        <a href="/best-sellers.html" class="sidebar-link">Best Sellers</a>
         <a href="/exclusive-deals.html" class="sidebar-link">Exclusive Deals</a>
         <a href="/about.html" class="sidebar-link">About Us</a>
         <a href="/contact.html" class="sidebar-link">Contact</a>
@@ -144,58 +144,146 @@
       <div class="faq-section"></div>
 
       <!-- Contact Section -->
-      <div class="contact-section">
-        <div class="contact-form-container">
-          <h2>Contact Us</h2>
-          <p>
-            Feel free to contact us any time. We will get back to you as soon as
-            we can!
-          </p>
-          <form class="contact-form js-contact-form">
-            <input type="text" name="name" placeholder="Name" required />
-            <input type="email" name="email" placeholder="Email" required />
-            <textarea name="message" placeholder="Message" required></textarea>
-            <button type="submit">Send</button>
+      <section class="py-16 bg-white">
+        <div
+          class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-12"
+        >
+          <!-- Contact Form -->
+          <div>
+            <h2 class="text-3xl font-bold text-gray-700 mb-6">
+              <i class="fas fa-edit text-blue-500"></i> Send Us a Message
+            </h2>
+            <form class="space-y-6" id="contactForm">
+              <div>
+                <label for="name" class="block text-gray-700 font-medium mb-2"
+                  >Your Name</label
+                >
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  class="w-full px-4 py-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                  placeholder="Enter your name"
+                  required
+                />
+              </div>
+              <div>
+                <label for="email" class="block text-gray-700 font-medium mb-2"
+                  >Your Email</label
+                >
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  class="w-full px-4 py-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                  placeholder="Enter your email"
+                  required
+                />
+              </div>
+              <div>
+                <label
+                  for="message"
+                  class="block text-gray-700 font-medium mb-2"
+                  >Your Message</label
+                >
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="5"
+                  class="w-full px-4 py-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                  placeholder="Write your message"
+                  required
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                class="w-full bg-yellow-500 text-white py-3 font-bold rounded-lg shadow-lg hover:bg-yellow-600 focus:outline-none"
+              >
+                <i class="fas fa-paper-plane"></i> Send Message
+              </button>
+              <div id="formMessage" class="mt-4 text-center hidden"></div>
+            </form>
+          </div>
 
-            <!-- Spinner Container, initially hidden -->
-            <div class="spinner-container" style="display: none">
-              <div class="spinner-grow text-primary" role="status"></div>
-              <div class="spinner-grow text-secondary" role="status"></div>
-              <div class="spinner-grow text-success" role="status"></div>
-              <div class="spinner-grow text-danger" role="status"></div>
+          <!-- Contact Info -->
+          <div>
+            <h2 class="text-3xl font-bold text-gray-700 mb-6">
+              <i class="fas fa-info-circle text-green-500"></i> Contact Info
+            </h2>
+            <ul class="space-y-4">
+              <li class="flex items-center space-x-4">
+                <i class="fas fa-map-marker-alt text-red-500 text-xl"></i>
+                <span class="text-gray-700"
+                  >14 Greenroad St., Nairobi, Kenya</span
+                >
+              </li>
+              <li class="flex items-center space-x-4">
+                <i class="fas fa-envelope text-blue-500 text-xl"></i>
+                <span class="text-gray-700">info@getintouch.we</span>
+              </li>
+              <li class="flex items-center space-x-4">
+                <i class="fas fa-phone text-yellow-500 text-xl"></i>
+                <span class="text-gray-700">+254 746 577 838</span>
+              </li>
+              <li class="flex items-center space-x-4">
+                <i class="fas fa-clock text-teal-500 text-xl"></i>
+                <span class="text-gray-700"
+                  >Monday - Friday: 9:00 AM - 6:00 PM</span
+                >
+              </li>
+            </ul>
+            <div class="mt-8 space-x-4">
+              <a
+                href="#"
+                class="text-gray-700 hover:text-blue-500"
+                aria-label="Facebook"
+                ><i class="fab fa-facebook-f text-2xl"></i
+              ></a>
+              <a
+                href="#"
+                class="text-gray-700 hover:text-teal-500"
+                aria-label="Twitter"
+                ><i class="fab fa-twitter text-2xl"></i
+              ></a>
+              <a
+                href="#"
+                class="text-gray-700 hover:text-pink-500"
+                aria-label="Instagram"
+                ><i class="fab fa-instagram text-2xl"></i
+              ></a>
             </div>
+          </div>
+        </div>
+      </section>
 
-            <!-- Message Container -->
-            <p class="form-message" style="display: none"></p>
+      <!-- Newsletter Section -->
+      <section class="py-16 bg-gray-50">
+        <div class="max-w-4xl mx-auto text-center">
+          <h2 class="text-3xl font-bold text-gray-700">
+            <i class="fas fa-envelope-open-text text-yellow-500"></i> Join Our
+            Newsletter
+          </h2>
+          <p class="text-lg text-gray-600 mt-4">
+            Stay updated on the latest arrivals, exclusive deals, and fashion
+            trends.
+          </p>
+          <form class="mt-6 flex flex-col sm:flex-row justify-center gap-4">
+            <input
+              type="email"
+              id="newsletterEmail"
+              placeholder="Enter your email"
+              required
+              class="w-full sm:w-2/3 px-4 py-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-500"
+            />
+            <button
+              type="submit"
+              class="bg-yellow-500 text-white px-8 py-3 rounded-lg shadow-lg hover:bg-yellow-600 focus:outline-none"
+            >
+              Subscribe
+            </button>
           </form>
         </div>
-        <div class="contact-info">
-          <h3>Info</h3>
-          <p><i class="fas fa-envelope"></i> info@getintouch.we</p>
-          <p><i class="fas fa-phone"></i> +24 56 89 146</p>
-          <p><i class="fas fa-map-marker-alt"></i> 14 Greenroad St.</p>
-          <p><i class="fas fa-clock"></i> 09:00 - 18:00</p>
-        </div>
-      </div>
-
-      <!-- Newsletter Signup Section -->
-      <div class="newsletter-section">
-        <h2>Unlock Exclusive Deals & Tips!</h2>
-        <p>
-          Join our newsletter to get early access to new arrivals, exclusive
-          discounts, and tips to transform your home.
-        </p>
-        <form id="newsletterForm" class="newsletter-form">
-          <input
-            type="email"
-            id="newsletterEmail"
-            placeholder="Enter your email"
-            required
-          />
-          <button type="submit" class="button-primary">Subscribe Now</button>
-        </form>
-        <div id="newsletterMessage" class="newsletter-message"></div>
-      </div>
+      </section>
     </div>
 
     <!-- Menu Toggle Button (Visible on small screens) -->
