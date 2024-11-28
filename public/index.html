@@ -165,7 +165,7 @@
             <h2 class="text-3xl font-bold text-gray-700 mb-6">
               <i class="fas fa-edit text-blue-500"></i> Send Us a Message
             </h2>
-            <form class="space-y-6" id="contactForm">
+            <form class="space-y-6 js-contact-form" id="contactForm">
               <div>
                 <label for="name" class="block text-gray-700 font-medium mb-2"
                   >Your Name</label
@@ -209,61 +209,19 @@
               </div>
               <button
                 type="submit"
-                class="w-full bg-yellow-500 text-white py-3 font-bold rounded-lg shadow-lg hover:bg-yellow-600 focus:outline-none"
+                class="submit-button w-full bg-yellow-500 text-white py-3 font-bold rounded-lg shadow-lg hover:bg-yellow-600 focus:outline-none"
               >
                 <i class="fas fa-paper-plane"></i> Send Message
               </button>
-              <div id="formMessage" class="mt-4 text-center hidden"></div>
-            </form>
-          </div>
 
-          <!-- Contact Info -->
-          <div>
-            <h2 class="text-3xl font-bold text-gray-700 mb-6">
-              <i class="fas fa-info-circle text-green-500"></i> Contact Info
-            </h2>
-            <ul class="space-y-4">
-              <li class="flex items-center space-x-4">
-                <i class="fas fa-map-marker-alt text-red-500 text-xl"></i>
-                <span class="text-gray-700"
-                  >14 Greenroad St., Nairobi, Kenya</span
-                >
-              </li>
-              <li class="flex items-center space-x-4">
-                <i class="fas fa-envelope text-blue-500 text-xl"></i>
-                <span class="text-gray-700">info@getintouch.we</span>
-              </li>
-              <li class="flex items-center space-x-4">
-                <i class="fas fa-phone text-yellow-500 text-xl"></i>
-                <span class="text-gray-700">+254 746 577 838</span>
-              </li>
-              <li class="flex items-center space-x-4">
-                <i class="fas fa-clock text-teal-500 text-xl"></i>
-                <span class="text-gray-700"
-                  >Monday - Friday: 9:00 AM - 6:00 PM</span
-                >
-              </li>
-            </ul>
-            <div class="mt-8 space-x-4">
-              <a
-                href="#"
-                class="text-gray-700 hover:text-blue-500"
-                aria-label="Facebook"
-                ><i class="fab fa-facebook-f text-2xl"></i
-              ></a>
-              <a
-                href="#"
-                class="text-gray-700 hover:text-teal-500"
-                aria-label="Twitter"
-                ><i class="fab fa-twitter text-2xl"></i
-              ></a>
-              <a
-                href="#"
-                class="text-gray-700 hover:text-pink-500"
-                aria-label="Instagram"
-                ><i class="fab fa-instagram text-2xl"></i
-              ></a>
-            </div>
+              <!-- Spinner and Message -->
+              <div
+                class="spinner-container hidden flex justify-center items-center mt-4"
+              >
+                <div class="spinner-grow text-blue-500"></div>
+              </div>
+              <p id="formMessage" class="text-center mt-4 hidden"></p>
+            </form>
           </div>
         </div>
       </section>
@@ -279,7 +237,10 @@
             Stay updated on the latest arrivals, exclusive deals, and fashion
             trends.
           </p>
-          <form class="mt-6 flex flex-col sm:flex-row justify-center gap-4">
+          <form
+            id="newsletterForm"
+            class="mt-6 flex flex-col sm:flex-row justify-center gap-4"
+          >
             <input
               type="email"
               id="newsletterEmail"
@@ -294,6 +255,7 @@
               Subscribe
             </button>
           </form>
+          <p id="newsletterMessage" class="mt-4 text-center"></p>
         </div>
       </section>
     </div>

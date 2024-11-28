@@ -1,13 +1,13 @@
 import { baseUrl } from "./constants.js";
 
 document.addEventListener("DOMContentLoaded", () => {
+  // Toggle sidebar visibility
   const sidebar = document.querySelector(".js-sidebar");
   const menuToggle = document.querySelector(".js-menu-toggle");
-  const authButton = document.querySelector(".js-auth-button");
 
   // Toggle sidebar visibility
   menuToggle.addEventListener("click", () => {
-    sidebar.classList.toggle("active");
+    sidebar.classList.toggle("hidden");
   });
 
   async function isAuthenticated() {

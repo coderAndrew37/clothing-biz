@@ -1,34 +1,39 @@
-import { baseUrl } from "./constants.js";
+document.addEventListener("DOMContentLoaded", () => {
+  const newsletterForm = document.getElementById("newsletterForm");
+  const newsletterMessage = document.getElementById("newsletterMessage");
 
-document
-  .getElementById("newsletterForm")
-  .addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const email = document.getElementById("newsletterEmail").value;
-    const messageDiv = document.getElementById("newsletterMessage");
+  if (newsletterForm) {
+    newsletterForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
 
-    messageDiv.textContent = "Subscribing...";
-    messageDiv.style.color = "#333";
+      newsletterMessage.textContent = "Subscribing...";
+      newsletterMessage.style.color = "#333";
 
-    try {
-      const response = await fetch(`${baseUrl}/api/newsletter/subscribe`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
-      });
+      const email = document.getElementById("newsletterEmail").value;
 
-      const result = await response.json();
+      try {
+        const response = await fetch("/api/newsletter/subscribe", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email }),
+        });
 
-      if (response.ok) {
-        messageDiv.textContent = result.message;
-        messageDiv.style.color = "#28a745";
-        document.getElementById("newsletterForm").reset();
-      } else {
-        messageDiv.textContent = result.message || "Subscription failed.";
-        messageDiv.style.color = "#dc3545";
+        const result = await response.json();
+
+        if (response.ok) {
+          newsletterMessage.textContent =
+            result.message || "Subscribed successfully!";
+          newsletterMessage.style.color = "#28a745";
+          newsletterForm.reset();
+        } else {
+          newsletterMessage.textContent =
+            result.message || "Subscription failed.";
+          newsletterMessage.style.color = "#dc3545";
+        }
+      } catch (error) {
+        newsletterMessage.textContent = "An error occurred. Please try again.";
+        newsletterMessage.style.color = "#dc3545";
       }
-    } catch (error) {
-      messageDiv.textContent = "An error occurred. Please try again.";
-      messageDiv.style.color = "#dc3545";
-    }
-  });
+    });
+  }
+});
