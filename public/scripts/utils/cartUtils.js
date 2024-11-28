@@ -1,9 +1,10 @@
+import { baseUrl } from "../constants.js";
 import { addToCart, updateCartQuantity } from "../../data/cart.js";
 
 // Check if the user is authenticated
 export async function isAuthenticated() {
   try {
-    const response = await fetch("/api/users/is-authenticated", {
+    const response = await fetch(`${baseUrl}/api/users/is-authenticated`, {
       method: "GET",
       credentials: "include",
     });

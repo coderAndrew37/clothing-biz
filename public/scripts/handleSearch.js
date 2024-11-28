@@ -1,3 +1,4 @@
+import { baseUrl } from "./constants.js";
 import { renderProducts } from "./utils/renderUtils.js";
 document.addEventListener("DOMContentLoaded", () => {
   const searchButton = document.querySelector(".js-search-button");
@@ -60,7 +61,7 @@ async function handleSuggestions(event) {
 async function fetchSuggestions(query) {
   try {
     const response = await fetch(
-      `/api/products/suggestions?q=${encodeURIComponent(query)}`
+      `${baseUrl}/api/products/suggestions?q=${encodeURIComponent(query)}`
     );
     if (!response.ok) {
       throw new Error("Failed to fetch suggestions");
@@ -99,7 +100,7 @@ async function handleSearch() {
 async function searchProducts(query) {
   try {
     const response = await fetch(
-      `/api/products/search?q=${encodeURIComponent(query)}`
+      `${baseUrl}/api/products/search?q=${encodeURIComponent(query)}`
     );
     if (!response.ok) {
       throw new Error("Failed to fetch search results");

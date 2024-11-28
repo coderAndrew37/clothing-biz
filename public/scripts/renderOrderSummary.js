@@ -1,4 +1,5 @@
 // /scripts/renderOrderSummary.js
+import { baseUrl } from "./constants.js";
 import { formatCurrency } from "./utils/money.js";
 import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
 import { renderPaymentSummary } from "./renderPaymentSummary.js";
@@ -96,8 +97,8 @@ async function updateQuantity(productId, newQuantity) {
     const method = newQuantity > 0 ? "PUT" : "DELETE";
     const url =
       newQuantity > 0
-        ? "/api/cart/update-cart"
-        : `/api/cart/remove-from-cart/${productId}`;
+        ? `${baseUrl}/api/cart/update-cart`
+        : `${baseUrl}/api/cart/remove-from-cart/${productId}`;
     const body =
       newQuantity > 0
         ? JSON.stringify({ productId, quantity: newQuantity })
@@ -117,7 +118,7 @@ async function updateQuantity(productId, newQuantity) {
 // Render the order summary and attach event listeners on page load
 export async function renderOrderSummary() {
   try {
-    const cartResponse = await fetch("/api/cart/get-cart", {
+    const cartResponse = await fetch(`${baseUrl}/api/cart/get-cart`, {
       method: "GET",
       credentials: "include",
     });
@@ -134,7 +135,7 @@ export async function renderOrderSummary() {
 
     const productIds = cart.map((item) => item.productId);
     const productResponse = await fetch(
-      `/api/products/by-ids?ids=${productIds.join(",")}`
+      `${baseUrl}/api/products/by-ids?ids=${productIds.join(",")}`
     );
     if (!productResponse.ok) throw new Error("Failed to fetch product details");
 

@@ -1,8 +1,8 @@
 import { addToCart, updateCartQuantity } from "../data/cart.js";
-
+import { baseUrl } from "./constants.js";
 async function checkAuthentication() {
   try {
-    const response = await fetch("/api/users/is-authenticated", {
+    const response = await fetch(`${baseUrl}/api/users/is-authenticated`, {
       method: "GET",
       credentials: "include",
     });
@@ -22,7 +22,7 @@ async function checkAuthentication() {
 // Fetch orders data
 async function fetchOrders() {
   try {
-    const response = await fetch("/api/orders", {
+    const response = await fetch(`${baseUrl}/api/orders`, {
       method: "GET",
       credentials: "include",
     });

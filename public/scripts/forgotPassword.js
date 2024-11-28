@@ -1,13 +1,10 @@
+import { baseUrl } from "./constants.js";
 document
   .getElementById("forgot-password-form")
   .addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const email = document.getElementById("email").value;
-    const isProduction = window.location.hostname !== "localhost";
-    const baseUrl = isProduction
-      ? "https://quiz-cash.onrender.com" // Production URL
-      : "http://localhost:8000"; // Development URL
 
     try {
       const response = await fetch(

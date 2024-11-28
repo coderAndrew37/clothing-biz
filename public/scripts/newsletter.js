@@ -1,3 +1,5 @@
+import { baseUrl } from "./constants.js";
+
 document
   .getElementById("newsletterForm")
   .addEventListener("submit", async (e) => {
@@ -9,7 +11,7 @@ document
     messageDiv.style.color = "#333";
 
     try {
-      const response = await fetch("/api/newsletter/subscribe", {
+      const response = await fetch(`${baseUrl}/api/newsletter/subscribe`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),

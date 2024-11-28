@@ -1,3 +1,5 @@
+import { baseUrl } from "./constants.js";
+
 document.addEventListener("DOMContentLoaded", () => {
   const contactForm = document.querySelector(".js-contact-form");
   const spinnerContainer = document.querySelector(".spinner-container");
@@ -15,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const formObject = Object.fromEntries(formData.entries());
 
       try {
-        const response = await fetch("/api/contacts", {
+        const response = await fetch(`${baseUrl}/api/contacts`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

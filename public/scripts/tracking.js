@@ -1,3 +1,5 @@
+import { baseUrl } from "./constants.js";
+
 /**
  * Fetch tracking details for a specific order and product.
  * @param {string} orderId - The ID of the order.
@@ -5,7 +7,7 @@
  */
 async function fetchTrackingDetails(orderId, productId) {
   try {
-    const response = await fetch(`/api/orders/${orderId}`, {
+    const response = await fetch(`${baseUrl}/api/orders/${orderId}`, {
       method: "GET",
       credentials: "include",
     });

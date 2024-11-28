@@ -1,7 +1,9 @@
+import { baseUrl } from "./constants.js";
+
 async function fetchOrders() {
   try {
     console.log("Fetching admin orders..."); // Debug log
-    const response = await fetch("/api/orders/admin", {
+    const response = await fetch(`${baseUrl}/api/orders/admin`, {
       method: "GET",
       credentials: "include", // Ensure cookies are sent
     });
@@ -72,7 +74,7 @@ function attachEventListeners() {
       );
 
       try {
-        const response = await fetch(`/api/orders/admin/${orderId}`, {
+        const response = await fetch(`${baseUrl}/api/orders/admin/${orderId}`, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ status: statusSelect.value }),

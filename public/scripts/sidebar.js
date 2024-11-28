@@ -1,3 +1,5 @@
+import { baseUrl } from "./constants.js";
+
 document.addEventListener("DOMContentLoaded", () => {
   const sidebar = document.querySelector(".js-sidebar");
   const menuToggle = document.querySelector(".js-menu-toggle");
@@ -10,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function isAuthenticated() {
     try {
-      const response = await fetch("/api/users/is-authenticated", {
+      const response = await fetch(`${baseUrl}/api/users/is-authenticated`, {
         method: "GET",
         credentials: "include",
       });
@@ -24,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function logout() {
     try {
-      await fetch("/api/users/logout", {
+      await fetch(`${baseUrl}/api/users/logout`, {
         method: "POST",
         credentials: "include",
       });

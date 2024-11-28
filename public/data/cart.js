@@ -1,7 +1,8 @@
+import { baseUrl } from "../scripts/constants.js";
 export async function updateCartQuantity() {
   try {
     // Fetch the user's cart data from the backend
-    const response = await fetch("/api/cart/get-cart", {
+    const response = await fetch(`${baseUrl}/api/cart/get-cart`, {
       method: "GET",
       credentials: "include", // Ensure authenticated requests
     });
@@ -37,7 +38,7 @@ export async function updateCartQuantity() {
 export async function addToCart(productId, quantity = 1) {
   try {
     // Send a POST request to add the product to the backend-managed cart
-    const response = await fetch("/api/cart/add-to-cart", {
+    const response = await fetch(`${baseUrl}/api/cart/add-to-cart`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -66,7 +67,7 @@ export async function addToCart(productId, quantity = 1) {
 // Remove an item from the cart using backend API
 export async function removeFromCart(productId) {
   try {
-    const response = await fetch(`/api/cart/remove-from-cart`, {
+    const response = await fetch(`${baseUrl}/api/cart/remove-from-cart`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -94,7 +95,7 @@ export async function removeFromCart(productId) {
 // Clear all items from the cart using backend API
 export async function clearCart() {
   try {
-    const response = await fetch(`/api/cart/clear-cart`, {
+    const response = await fetch(`${baseUrl}/api/cart/clear-cart`, {
       method: "DELETE",
       credentials: "include", // Include credentials for authenticated requests
     });
