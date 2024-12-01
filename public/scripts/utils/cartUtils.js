@@ -10,7 +10,6 @@ export async function isAuthenticated() {
     });
     if (response.ok) {
       const data = await response.json();
-      console.log("Authentication status:", data.authenticated);
       return data.authenticated;
     }
   } catch (error) {
@@ -24,7 +23,7 @@ export function initAddToCartListeners() {
   const buttons = document.querySelectorAll(".js-add-to-cart");
 
   buttons.forEach((button) => {
-    // Remove any existing listeners to avoid duplication
+    // Remove any existing listeners
     const newButton = button.cloneNode(true);
     button.replaceWith(newButton);
 
@@ -53,8 +52,7 @@ export function initAddToCartListeners() {
         return;
       }
 
-      // Proceed with add-to-cart functionality
-      await handleAddToCart(productId, button);
+      await handleAddToCart(productId, button); // Handle adding to cart
     });
   });
 }

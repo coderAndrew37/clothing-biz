@@ -15,7 +15,15 @@ export async function loadCategoryProducts(categorySlug, page = 1, limit = 15) {
       );
     }
 
-    return await response.json();
+    const data = await response.json();
+
+    // Ensure `_id` is mapped to `id` for all products
+    data.products = data.products.map((product) => ({
+      ...product,
+      id: product._id,
+    }));
+
+    return data;
   } catch (error) {
     console.error("Error fetching category products:", error);
     throw error;
