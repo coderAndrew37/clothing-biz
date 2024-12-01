@@ -1,0 +1,25 @@
+/* Sidebar animations */
+.sidebar {
+  transition: transform 0.3s ease-in-out;
+}
+
+.sidebar-closed {
+  transform: translateX(-100%);
+}
+
+.sidebar-open {
+  transform: translateX(0);
+}
+
+.overlay {
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+}
+
+.overlay-active {
+  display: block;
+}
+
+.menu-toggle i {
+  transition: transform 0.3s ease-in-out;
+}

@@ -9,46 +9,52 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
+
+    <link rel="stylesheet" href="/styles/shared/sidebar-animations.css" />
   </head>
   <body class="bg-gray-100 font-roboto">
-    <!-- Sidebar -->
-    <aside
-      class="js-sidebar hidden fixed top-0 left-0 h-full w-64 bg-gray-900 text-white"
+    <!-- Header -->
+    <header
+      class="fixed top-0 left-0 w-full bg-gray-900 text-white z-50 shadow-md"
     >
-      <nav class="p-4 space-y-4">
-        <a href="/" class="block text-lg font-bold text-yellow-500">Home</a>
-        <a href="/categories.html" class="block text-lg">Categories</a>
-        <a href="/about.html" class="block text-lg">About Us</a>
-        <a href="/contact.html" class="block text-lg">Contact</a>
-      </nav>
-    </aside>
-
-    <!-- Menu Toggle Button -->
-    <header class="bg-gray-900 py-4">
-      <div class="max-w-7xl mx-auto flex items-center justify-between px-4">
-        <button class="js-menu-toggle p-2 bg-yellow-500 text-white rounded-lg">
-          Menu
+      <div
+        class="max-w-7xl mx-auto flex items-center justify-between px-4 py-4"
+      >
+        <button
+          class="js-menu-toggle p-2 bg-yellow-500 text-white rounded-lg"
+          aria-label="Open Menu"
+        >
+          <i class="fas fa-bars"></i>
         </button>
-        <h1 class="text-2xl font-bold text-white">Kenya Fashion Hub</h1>
+        <h1 class="text-2xl font-bold">Kenya Fashion Hub</h1>
       </div>
     </header>
 
-    <!-- Main Content -->
-    <main class="md:pl-64">
-      <!-- Header -->
-      <header
-        class="bg-gradient-to-r from-gray-900 to-gray-800 text-white py-8"
-      >
-        <div class="max-w-7xl mx-auto text-center">
-          <h1 class="text-4xl font-bold">
-            <i class="fas fa-envelope text-yellow-500"></i> Contact Us
-          </h1>
-          <p class="mt-4 text-lg">
-            We're here to help! Get in touch with Kenya Fashion Hub.
-          </p>
-        </div>
-      </header>
+    <!-- Sidebar -->
+    <div
+      class="js-sidebar sidebar sidebar-closed fixed top-0 left-0 h-full w-64 bg-gray-900 text-white z-50 shadow-lg"
+    >
+      <nav class="p-4 space-y-4">
+        <button
+          class="js-menu-close p-2 bg-red-500 text-white rounded-lg"
+          aria-label="Close Menu"
+        >
+          <i class="fas fa-times"></i>
+        </button>
+        <a href="/" class="block text-lg font-bold text-yellow-500">Home</a>
+        <a href="/exclusive-deals.html" class="block text-lg"
+          >Exclusive Deals</a
+        >
+        <a href="/about.html" class="block text-lg">About Us</a>
+        <a href="/contact.html" class="block text-lg">Contact</a>
+      </nav>
+    </div>
 
+    <!-- Overlay -->
+    <div class="js-overlay overlay fixed inset-0 z-40" aria-hidden="true"></div>
+
+    <!-- Main Content -->
+    <main class="pt-16">
       <!-- Contact Section -->
       <section class="py-16 bg-white">
         <div
@@ -59,7 +65,7 @@
             <h2 class="text-3xl font-bold text-gray-700 mb-6">
               <i class="fas fa-edit text-blue-500"></i> Send Us a Message
             </h2>
-            <form class="space-y-6 js-contact-form" id="contactForm">
+            <form id="contactForm" class="mt-8 space-y-6">
               <div>
                 <label for="name" class="block text-gray-700 font-medium mb-2"
                   >Your Name</label
@@ -105,42 +111,64 @@
                 type="submit"
                 class="submit-button w-full bg-yellow-500 text-white py-3 font-bold rounded-lg shadow-lg hover:bg-yellow-600 focus:outline-none"
               >
-                <i class="fas fa-paper-plane"></i> Send Message
+                Send Message
               </button>
-
-              <!-- Spinner and Message -->
-              <div
-                class="spinner-container hidden flex justify-center items-center mt-4"
-              >
-                <div class="spinner-grow text-blue-500"></div>
+              <div id="formMessage" class="hidden text-center mt-4"></div>
+              <div class="spinner-container hidden flex justify-center mt-4">
+                <div class="spinner border-t-4 border-yellow-500 w-8 h-8"></div>
               </div>
-              <p id="formMessage" class="text-center mt-4 hidden"></p>
             </form>
+          </div>
+
+          <!-- Contact Info -->
+          <div>
+            <h2 class="text-3xl font-bold text-gray-700 mb-6">
+              <i class="fas fa-info-circle text-green-500"></i> Contact Info
+            </h2>
+            <ul class="space-y-4">
+              <li class="flex items-center space-x-4">
+                <i class="fas fa-map-marker-alt text-red-500 text-xl"></i>
+                <span class="text-gray-700"
+                  >14 Greenroad St., Nairobi, Kenya</span
+                >
+              </li>
+              <li class="flex items-center space-x-4">
+                <i class="fas fa-envelope text-blue-500 text-xl"></i>
+                <span class="text-gray-700">info@getintouch.we</span>
+              </li>
+              <li class="flex items-center space-x-4">
+                <i class="fas fa-phone text-yellow-500 text-xl"></i>
+                <span class="text-gray-700">+254 746 577 838</span>
+              </li>
+              <li class="flex items-center space-x-4">
+                <i class="fas fa-clock text-teal-500 text-xl"></i>
+                <span class="text-gray-700"
+                  >Monday - Friday: 9:00 AM - 6:00 PM</span
+                >
+              </li>
+            </ul>
           </div>
         </div>
       </section>
 
       <!-- Newsletter Section -->
+
       <section class="py-16 bg-gray-50">
-        <div class="max-w-4xl mx-auto text-center">
-          <h2 class="text-3xl font-bold text-gray-700">
-            <i class="fas fa-envelope-open-text text-yellow-500"></i> Join Our
-            Newsletter
-          </h2>
+        <div class="max-w-6xl mx-auto px-4">
+          <h2 class="text-3xl font-bold text-gray-700">Newsletter</h2>
           <p class="text-lg text-gray-600 mt-4">
-            Stay updated on the latest arrivals, exclusive deals, and fashion
-            trends.
+            Subscribe to our newsletter for updates and offers!
           </p>
           <form
             id="newsletterForm"
-            class="mt-6 flex flex-col sm:flex-row justify-center gap-4"
+            class="mt-6 flex flex-col sm:flex-row gap-4"
           >
             <input
               type="email"
               id="newsletterEmail"
               placeholder="Enter your email"
-              required
               class="w-full sm:w-2/3 px-4 py-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-500"
+              required
             />
             <button
               type="submit"
@@ -149,7 +177,10 @@
               Subscribe
             </button>
           </form>
-          <p id="newsletterMessage" class="mt-4 text-center"></p>
+          <div
+            id="newsletterMessage"
+            class="mt-4 text-center text-gray-700"
+          ></div>
         </div>
       </section>
     </main>

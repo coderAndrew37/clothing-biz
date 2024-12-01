@@ -14,9 +14,12 @@ import { categories } from "./data/categoriesData.js";
 import { testimonials } from "./data/testimonialsData.js";
 import { specialOffers } from "./data/specialOffersData.js";
 import { isAuthenticated, initAddToCartListeners } from "./utils/cartUtils.js";
+import "./authButton.js";
 
 import "./handleSearch.js";
 import "./sidebar.js";
+import "./newsletter.js";
+import "./contact.js";
 
 let currentPage = 1;
 let totalPages = 1;
