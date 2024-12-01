@@ -92,6 +92,7 @@ router.get("/search", async (req, res) => {
     const products = await Product.find({ $text: { $search: query } })
       .skip((page - 1) * limit)
       .limit(limit)
+      .select("name image rating priceCents") // Include required fields only
       .exec();
 
     const totalProducts = await Product.countDocuments({
@@ -99,12 +100,24 @@ router.get("/search", async (req, res) => {
     });
     const totalPages = Math.ceil(totalProducts / limit);
 
-    if (products.length === 0) {
+    // Provide default values for any missing fields
+    const sanitizedProducts = products.map((product) => ({
+      _id: product._id,
+      name: product.name || "Unnamed Product",
+      image: product.image || "images/default-product.png",
+      rating: {
+        stars: product.rating?.stars || 0,
+        count: product.rating?.count || 0,
+      },
+      priceCents: product.priceCents || 0,
+    }));
+
+    if (sanitizedProducts.length === 0) {
       return res.status(404).json({ message: "No products found" });
     }
 
     res.json({
-      products,
+      products: sanitizedProducts,
       currentPage: page,
       totalPages,
       totalProducts,

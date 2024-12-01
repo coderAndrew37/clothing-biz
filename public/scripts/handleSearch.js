@@ -58,7 +58,14 @@ async function handleSuggestions(event) {
   }
 }
 
+const suggestionsCache = {}; // Cache object for suggestions
+
 async function fetchSuggestions(query) {
+  if (suggestionsCache[query]) {
+    console.log("Using cached suggestions for:", query);
+    return suggestionsCache[query];
+  }
+
   try {
     const response = await fetch(
       `${baseUrl}/api/products/suggestions?q=${encodeURIComponent(query)}`
@@ -67,7 +74,8 @@ async function fetchSuggestions(query) {
       throw new Error("Failed to fetch suggestions");
     }
     const data = await response.json();
-    return Array.isArray(data) ? data : []; // Ensure data is an array
+    suggestionsCache[query] = Array.isArray(data) ? data : []; // Cache the results
+    return suggestionsCache[query];
   } catch (error) {
     console.error("Error fetching suggestions:", error);
     return [];
@@ -75,17 +83,24 @@ async function fetchSuggestions(query) {
 }
 
 async function handleSearch() {
-  const searchTerm = document.querySelector(".search-bar").value.trim();
+  const searchTerm = document.querySelector(".js-search-bar").value.trim();
   const resultsContainer = document.querySelector(".js-products-grid");
+  const spinner = document.getElementById("loadingSpinner");
+
   if (searchTerm) {
-    resultsContainer.innerHTML = "<p>Loading results...</p>";
+    // Show spinner and clear existing content
+    spinner.classList.remove("hidden");
+    resultsContainer.innerHTML = "";
+
     try {
-      const results = await searchProducts(searchTerm);
+      const results = await searchProducts(searchTerm); // Fetch search results
+      console.log("Search results:", results);
+
       if (Array.isArray(results) && results.length > 0) {
-        renderProducts(results);
+        renderProducts(results, ".js-products-grid"); // Render results
         document
           .querySelector("#featured-products")
-          .scrollIntoView({ behavior: "smooth" }); // Smooth scroll to featured section
+          .scrollIntoView({ behavior: "smooth" });
       } else {
         resultsContainer.innerHTML = "<p>No results found.</p>";
       }
@@ -93,6 +108,8 @@ async function handleSearch() {
       console.error("Search failed:", error);
       resultsContainer.innerHTML =
         "<p>Error loading search results. Please try again later.</p>";
+    } finally {
+      spinner.classList.add("hidden"); // Hide spinner
     }
   }
 }
